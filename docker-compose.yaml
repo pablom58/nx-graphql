@@ -1,0 +1,37 @@
+version: '3.1'
+services:
+  postgres_one:
+    container_name: test_one_database
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=test_one
+      - POSTGRES_USER=test_one
+      - POSTGRES_DB=test_one
+    volumes:
+      - ./postgres_one_data:/var/lib/postgresql/data
+
+  postgres_two:
+    container_name: test_two_database
+    image: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_PASSWORD=test_two
+      - POSTGRES_USER=test_two
+      - POSTGRES_DB=test_two
+    volumes:
+      - ./postgres_two_data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: test_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=test@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=test
+    ports:
+      - 5001:80
+    depends_on:
+      - postgres_one
+      - postgres_two

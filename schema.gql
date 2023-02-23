@@ -1,0 +1,521 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @extends on INTERFACE | OBJECT
+
+directive @external on FIELD_DEFINITION | OBJECT
+
+directive @inaccessible on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION
+
+directive @key(fields: String!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT
+
+directive @link(import: [link__Import], url: String!) on SCHEMA
+
+directive @override(from: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @shareable on FIELD_DEFINITION | OBJECT
+
+directive @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+input CreateManyTestOneBSInput {
+  """Array of records to create"""
+  testOneBS: [CreateTestOneB!]!
+}
+
+input CreateManyTestOnesInput {
+  """Array of records to create"""
+  testOnes: [CreateTestOne!]!
+}
+
+input CreateOneTestOneBInput {
+  """The record to create"""
+  testOneB: CreateTestOneB!
+}
+
+input CreateOneTestOneInput {
+  """The record to create"""
+  testOne: CreateTestOne!
+}
+
+input CreateTestOne {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  name: String
+  updatedAt: DateTime
+}
+
+input CreateTestOneB {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  name: String
+  testOneId: Float
+  updatedAt: DateTime
+}
+
+input CursorPaging {
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+input DeleteManyTestOneBSInput {
+  """Filter to find records to delete"""
+  filter: TestOneBDeleteFilter!
+}
+
+input DeleteManyTestOnesInput {
+  """Filter to find records to delete"""
+  filter: TestOneDeleteFilter!
+}
+
+input DeleteOneTestOneBInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneTestOneInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input IDFilterComparison {
+  eq: ID
+  gt: ID
+  gte: ID
+  iLike: ID
+  in: [ID!]
+  is: Boolean
+  isNot: Boolean
+  like: ID
+  lt: ID
+  lte: ID
+  neq: ID
+  notILike: ID
+  notIn: [ID!]
+  notLike: ID
+}
+
+type Mutation {
+  createManyTestOneBS(input: CreateManyTestOneBSInput!): [TestOneB!]!
+  createManyTestOnes(input: CreateManyTestOnesInput!): [TestOne!]!
+  createOneTestOne(input: CreateOneTestOneInput!): TestOne!
+  createOneTestOneB(input: CreateOneTestOneBInput!): TestOneB!
+  deleteManyTestOneBS(input: DeleteManyTestOneBSInput!): DeleteManyResponse!
+  deleteManyTestOnes(input: DeleteManyTestOnesInput!): DeleteManyResponse!
+  deleteOneTestOne(input: DeleteOneTestOneInput!): TestOneDeleteResponse!
+  deleteOneTestOneB(input: DeleteOneTestOneBInput!): TestOneBDeleteResponse!
+  sendMessage: Boolean!
+  setTestOneOnTestOneB(input: SetTestOneOnTestOneBInput!): TestOneB!
+  updateManyTestOneBS(input: UpdateManyTestOneBSInput!): UpdateManyResponse!
+  updateManyTestOnes(input: UpdateManyTestOnesInput!): UpdateManyResponse!
+  updateOneTestOne(input: UpdateOneTestOneInput!): TestOne!
+  updateOneTestOneB(input: UpdateOneTestOneBInput!): TestOneB!
+}
+
+input NumberFieldComparison {
+  between: NumberFieldComparisonBetween
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: Boolean
+  isNot: Boolean
+  lt: Float
+  lte: Float
+  neq: Float
+  notBetween: NumberFieldComparisonBetween
+  notIn: [Float!]
+}
+
+input NumberFieldComparisonBetween {
+  lower: Float!
+  upper: Float!
+}
+
+type PageInfo {
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+}
+
+type Query {
+  testOne(
+    """The id of the record to find."""
+    id: ID!
+  ): TestOne
+  testOneB(
+    """The id of the record to find."""
+    id: ID!
+  ): TestOneB
+  testOneBS(
+    """Specify to filter the records returned."""
+    filter: TestOneBFilter! = {}
+
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [TestOneBSort!]! = []
+  ): TestOneBConnection!
+  testOnes(
+    """Specify to filter the records returned."""
+    filter: TestOneFilter! = {}
+
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to sort results."""
+    sorting: [TestOneSort!]! = []
+  ): TestOneConnection!
+}
+
+input SetTestOneOnTestOneBInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+type TestOne {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+}
+
+type TestOneAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  updatedAt: DateTime
+}
+
+type TestOneB {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  name: String!
+  testOne: TestOne!
+  testOneId: Float!
+  updatedAt: DateTime
+}
+
+type TestOneBAggregateGroupBy {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  testOneId: Float
+  updatedAt: DateTime
+}
+
+type TestOneBAvgAggregate {
+  testOneId: Float
+}
+
+type TestOneBConnection {
+  """Array of edges."""
+  edges: [TestOneBEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type TestOneBCountAggregate {
+  createdAt: Int
+  deletedAt: Int
+  id: Int
+  testOneId: Int
+  updatedAt: Int
+}
+
+input TestOneBDeleteFilter {
+  and: [TestOneBDeleteFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  id: IDFilterComparison
+  or: [TestOneBDeleteFilter!]
+  testOneId: NumberFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type TestOneBDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  name: String
+  testOneId: Float
+  updatedAt: DateTime
+}
+
+type TestOneBEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the TestOneB"""
+  node: TestOneB!
+}
+
+input TestOneBFilter {
+  and: [TestOneBFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  id: IDFilterComparison
+  or: [TestOneBFilter!]
+  testOneId: NumberFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type TestOneBMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  testOneId: Float
+  updatedAt: DateTime
+}
+
+type TestOneBMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  testOneId: Float
+  updatedAt: DateTime
+}
+
+input TestOneBSort {
+  direction: SortDirection!
+  field: TestOneBSortFields!
+  nulls: SortNulls
+}
+
+enum TestOneBSortFields {
+  createdAt
+  deletedAt
+  id
+  testOneId
+  updatedAt
+}
+
+type TestOneBSumAggregate {
+  testOneId: Float
+}
+
+input TestOneBUpdateFilter {
+  and: [TestOneBUpdateFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  id: IDFilterComparison
+  or: [TestOneBUpdateFilter!]
+  testOneId: NumberFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type TestOneConnection {
+  """Array of edges."""
+  edges: [TestOneEdge!]!
+
+  """Paging information"""
+  pageInfo: PageInfo!
+}
+
+type TestOneCountAggregate {
+  createdAt: Int
+  deletedAt: Int
+  id: Int
+  updatedAt: Int
+}
+
+input TestOneDeleteFilter {
+  and: [TestOneDeleteFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  id: IDFilterComparison
+  or: [TestOneDeleteFilter!]
+  updatedAt: DateFieldComparison
+}
+
+type TestOneDeleteResponse {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  name: String
+  updatedAt: DateTime
+}
+
+type TestOneEdge {
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+
+  """The node containing the TestOne"""
+  node: TestOne!
+}
+
+input TestOneFilter {
+  and: [TestOneFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  id: IDFilterComparison
+  or: [TestOneFilter!]
+  updatedAt: DateFieldComparison
+}
+
+type TestOneMaxAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  updatedAt: DateTime
+}
+
+type TestOneMinAggregate {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  updatedAt: DateTime
+}
+
+input TestOneSort {
+  direction: SortDirection!
+  field: TestOneSortFields!
+  nulls: SortNulls
+}
+
+enum TestOneSortFields {
+  createdAt
+  deletedAt
+  id
+  updatedAt
+}
+
+input TestOneUpdateFilter {
+  and: [TestOneUpdateFilter!]
+  createdAt: DateFieldComparison
+  deletedAt: DateFieldComparison
+  id: IDFilterComparison
+  or: [TestOneUpdateFilter!]
+  updatedAt: DateFieldComparison
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+input UpdateManyTestOneBSInput {
+  """Filter used to find fields to update"""
+  filter: TestOneBUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateTestOneB!
+}
+
+input UpdateManyTestOnesInput {
+  """Filter used to find fields to update"""
+  filter: TestOneUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateTestOne!
+}
+
+input UpdateOneTestOneBInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateTestOneB!
+}
+
+input UpdateOneTestOneInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateTestOne!
+}
+
+input UpdateTestOne {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  name: String
+  updatedAt: DateTime
+}
+
+input UpdateTestOneB {
+  createdAt: DateTime
+  deletedAt: DateTime
+  id: ID
+  name: String
+  testOneId: Float
+  updatedAt: DateTime
+}
+
+scalar link__Import
